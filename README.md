@@ -7,7 +7,7 @@ note: i will add `yml` files for K8S
 
 All the infrastructure deploys by default on `us-west-2`. If you want to deploy in a different region pass the `aws_region` parameter to `make`.
 
-## Tools creation steps
+## Creation steps
 
 Create a named profile for the AWS Command Line Interface (CLI). Once you have your AWS credentials on `~/.aws/credentials` like this:
 
@@ -18,6 +18,7 @@ aws_secret_access_key=dsadsadsasafsdasdasdsa
 ```
 
 
-```pw
+```powershell
 $ make PWD=${PWD} HOME=${HOME} destroy
+$ make PWD=${PWD} HOME=${HOME} apply
 ```
