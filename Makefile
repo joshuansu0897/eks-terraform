@@ -13,6 +13,7 @@ HOME ?= ~/
 TERRAFORM := docker run -i --rm -t \
 		-v ${PWD}:/terraform/ \
 		-v ${HOME}\.aws:/root/.aws \
+		-v ${HOME}\.kube:/root/.kube \
 		-w /terraform/src/ \
 		hashicorp/terraform:${tf_versions}
 
@@ -20,6 +21,7 @@ TERRAFORM := docker run -i --rm -t \
 TERRAFORMBASH := docker run -i --rm -t \
 		-v ${PWD}:/terraform/ \
 		-v ${HOME}\.aws:/root/.aws \
+		-v ${HOME}\.kube:/root/.kube \
 		--entrypoint=/bin/sh \
 		--env AWS_PROFILE="${aws_profile}" \
 		--env AWS_REGION="${aws_region}" \

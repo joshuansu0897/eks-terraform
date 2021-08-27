@@ -22,3 +22,5 @@ Todos los nodos y masters están conectados a una red física para poder hablars
 
 Un sistema es imperativo cuando ejecuta una seria de pasos, que deben seguir un orden especifico. Si algun paso se interrumpe, la secuencia inicia desde el paso 1.
 Un sistema es declarativo cuando trata de converger a un estado deseado, a partir de un estado actual.
+
+#### **update the kubectl context** `aws eks update-kubeconfig --name example`
