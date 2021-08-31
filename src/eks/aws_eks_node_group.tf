@@ -3,10 +3,11 @@ resource "aws_eks_node_group" "example" {
   node_group_name = "example"
   node_role_arn   = aws_iam_role.nodes.arn
   subnet_ids      = var.private_subnets[*].id
+  instance_types  = ["t2.small"]
 
   scaling_config {
-    desired_size = 1
-    max_size     = 1
+    desired_size = 5
+    max_size     = 5
     min_size     = 1
   }
 
