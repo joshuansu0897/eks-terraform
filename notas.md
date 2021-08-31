@@ -23,4 +23,27 @@ Todos los nodos y masters están conectados a una red física para poder hablars
 Un sistema es imperativo cuando ejecuta una seria de pasos, que deben seguir un orden especifico. Si algun paso se interrumpe, la secuencia inicia desde el paso 1.
 Un sistema es declarativo cuando trata de converger a un estado deseado, a partir de un estado actual.
 
+
 #### **update the kubectl context** `aws eks update-kubeconfig --name example`
+
+
+### **Accediendo a los contenedores**
+
+**Cluster IP**: Una ip vitual es asignada para el servicio
+
+**NodePort**: Un puerto es asignado para el servidor en todos los nodos
+
+**ExternalName**: Una entrada de DNS manejada por CoreDNS
+
+**Load Balancer**: Un loadbalancer externo es provisionado para el servicio. Solo disponible cuando se usa un servicio con un balanceador
+
+Algoritmos para LoadBalancer https://www.nginx.com/resources/glossary/load-balancing/:
+- Round-Robin
+- Least Connnection
+- Least Time
+- Hash
+- IP Hash
+- Random with two choices
+
+Kubernetes usa IPTABLES para enrutar el trafico, hacia nuestro pods y eventualmente a nuestros nodos 
+no es Round Robin, es probabilistico usa `statistic mode random probability`

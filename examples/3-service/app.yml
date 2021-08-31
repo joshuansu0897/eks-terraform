@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: httpenv-deployment
+  labels:
+    app: httpenv
+spec:
+  replicas: 10
+  selector:
+    matchLabels:
+      app: httpenv
+  template:
+    metadata:
+      labels:
+        app: httpenv
+    spec:
+      containers:
+      - name: httpenv
+        image: jpetazzo/httpenv:latest
