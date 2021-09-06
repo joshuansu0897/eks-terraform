@@ -47,3 +47,15 @@ Algoritmos para LoadBalancer https://www.nginx.com/resources/glossary/load-balan
 
 Kubernetes usa IPTABLES para enrutar el trafico, hacia nuestro pods y eventualmente a nuestros nodos 
 no es Round Robin, es probabilistico usa `statistic mode random probability`
+
+
+### **Conceptos**
+
+**Kubectl-proxy**: es un proxy que corre en foregrown (en userspaces) que nos permite acceder a la API de K8s de manera autenticada, ya que se requiere unas credenciales para acceder con permisos de autenticación.
+
+**Kubectl-portforward**: nos permite hacer lo mismo que el proxy pero, para acceder a cualquier puerto de un servicio que este expuesto de nuestro Cluster.
+
+La configuración con las credenciales para acceder al Cluster de K8s están en el archivo ~/.kube/config
+
+
+**DaemonSet** se asegura que todos, o algunos nodos corra una copia de un Pod. No se crean en el CLI (kubectl), sino a través de los manifest files.
