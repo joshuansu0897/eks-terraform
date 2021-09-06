@@ -59,3 +59,10 @@ La configuración con las credenciales para acceder al Cluster de K8s están en 
 
 
 **DaemonSet** se asegura que todos, o algunos nodos corra una copia de un Pod. No se crean en el CLI (kubectl), sino a través de los manifest files.
+
+
+### **Despliegues controlados**
+
+**MAX SURGE**: cuantos pods se crean a partir de los que tengo, o sea que si hay 100 hasta 25 pods pueden estar creándose al mismo momento por default (25%)
+
+**MAX UNAVAILABLE**: a lo sumo puede haber, un 25% de mis pods no disponibles (es el valor por default)
