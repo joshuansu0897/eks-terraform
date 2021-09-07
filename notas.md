@@ -57,7 +57,6 @@ no es Round Robin, es probabilistico usa `statistic mode random probability`
 
 La configuración con las credenciales para acceder al Cluster de K8s están en el archivo ~/.kube/config
 
-
 **DaemonSet** se asegura que todos, o algunos nodos corra una copia de un Pod. No se crean en el CLI (kubectl), sino a través de los manifest files.
 
 
@@ -66,3 +65,18 @@ La configuración con las credenciales para acceder al Cluster de K8s están en 
 **MAX SURGE**: cuantos pods se crean a partir de los que tengo, o sea que si hay 100 hasta 25 pods pueden estar creándose al mismo momento por default (25%)
 
 **MAX UNAVAILABLE**: a lo sumo puede haber, un 25% de mis pods no disponibles (es el valor por default)
+
+
+### **Healthchecks**
+
+**Liveness**: son errores de los cuales tu app no se puede recuperar, te falta algun archivo, te falta algun parametro, va a matar el pod y levantara uno nuevo con la misma version n veces hasta que se cance
+
+**Readiness**: Esta live, pero el pod no esta listo para recivir trafico, remueve el servicio
+
+Tipos de Health Checks:
+
+**ExecAction**: ejecuta un comando dentro del pod, si el comando da algo diferente de 0
+
+**TCPSocketAction**: intenta conectarse al puerto, si se conecta esta listo para trabajar
+
+**HTTPGetAction**: si tu app expone un server, un api, y hace una peticion a tu /help /status o /, si recive 200 es porque esta listo para trabajar
