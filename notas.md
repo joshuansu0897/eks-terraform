@@ -80,3 +80,15 @@ Tipos de Health Checks:
 **TCPSocketAction**: intenta conectarse al puerto, si se conecta esta listo para trabajar
 
 **HTTPGetAction**: si tu app expone un server, un api, y hace una peticion a tu /help /status o /, si recive 200 es porque esta listo para trabajar
+
+### **Helm**
+
+Es una herramienta que nos sirve como gestor de paquetes de Kubernetes.
+
+Conceptos:
+
+**helm**: es el cliente de Helm.
+
+**tiller**: es el componente del servidor. Nos sirve para recibir los comandos que le enviamos desde helm. Ya que tiller se comunica directamente con el API de Kubernetes. (pero creo que ya no existe)
+
+**chart**: son los paquetes manejados por helm.
