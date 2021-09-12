@@ -92,3 +92,51 @@ Conceptos:
 **tiller**: es el componente del servidor. Nos sirve para recibir los comandos que le enviamos desde helm. Ya que tiller se comunica directamente con el API de Kubernetes. (pero creo que ya no existe)
 
 **chart**: son los paquetes manejados por helm.
+
+### **Config Map**
+
+Un configmap es un objeto de la API utilizado para almacenar datos no confidenciales en el formato clave-valor.
+Un ConfigMap te permite desacoplar la configuración de un entorno específico de una imagen de contenedor, así las aplicaciones son fácilmente portables.
+
+Tenemos diferentes formas de configurar nuestras aplicaciones:
+- Argumentos por línea de comandos
+- Variables de entorno (env map en el spec)
+- Archivos de configuración (config maps)
+    - Guardan tanto archivo como valores clave/valor
+
+Hay cuatro maneras diferentes de usar un ConfigMap para configurar un contenedor dentro de un Pod:
+- Argumento en la linea de comandos como entrypoint de un contenedor
+- Variable de enorno de un contenedor (env map en el spec)
+- Como fichero en un volumen de solo lectura, para que lo lea la aplicación
+- Escribir el código para ejecutar dentro de un Pod que utiliza la API para leer el ConfigMap
+
+
+### **Volume**
+
+Un volumen nos va a permitir compartir archivos entre diferentes pods o en nuestro host. 
+Estos se usan para que los archivos vivan a lo largo del tiempo y el pod pueda seguir haciendo uso de estos archivos de logs, archivos de configuración o cualquier otro.
+
+Docker:
+- Permiten compartir información entre contenedores del mismo host
+- Permiten acceder a mecanismo de storage
+- Docker config y docker secrets
+
+Kubernetes:
+- Permiten compartir información entre contenedores del mismo pod
+- Permite acceder también a mecanismo de storage
+- Se utilizan para el manejo de secrets y configuraciones
+
+Ciclo de Vida
+- El volumen se crea cuando el pod se crea.
+    - Esto aplica principalmente para los volúmenes emptyDir.
+    - Para otro tipo se conectan en vez de crearse.
+- Un volumen se mantiene aún cuando se reinicie el contenedor.
+- Un volumen se destruye cuando el pod se elimina.
+
+### **NameSpaces**
+
+Kubernetes starts with four initial namespaces:
+- **default** The default namespace for objects with no other namespace
+- **kube-system** The namespace for objects created by the Kubernetes system
+- **kube-public** This namespace is created automatically and is readable by all users (including those not authenticated). This namespace is mostly reserved for cluster usage, in case that some resources should be visible and readable publicly throughout the whole cluster. The public aspect of this namespace is only a convention, not a requirement.
+- **kube-node-lease** This namespace for the lease objects associated with each node which improves the performance of the node heartbeats as the cluster scales.
