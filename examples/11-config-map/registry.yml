@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: registry
+spec:
+  containers:
+  - name: registry
+    image: registry
+    env: # declaramos las variables de entorno
+    - name: REGISTRY_HTTP_ADDR # nombre de la variable de entorno
+      valueFrom:
+        configMapKeyRef:
+          name: registry # nombre del config map
+          key: http.addr  # este valor viene del configmap, se agrego en el from-literal

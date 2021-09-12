@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: haproxy
+spec:
+  volumes:
+  - name: config # Name of the volume
+    configMap:  # ConfigMap volume
+      name: haproxy # Name of the ConfigMap
+  containers:
+  - name: haproxy
+    image: haproxy
+    volumeMounts: # Mount the ConfigMap volume
+    - name: config # Name of the volume
+      mountPath: /usr/local/etc/haproxy/ # Mount path
+    securityContext:
+      runAsUser:  0
+      runAsGroup: 0
