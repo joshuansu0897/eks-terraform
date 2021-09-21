@@ -140,3 +140,19 @@ Kubernetes starts with four initial namespaces:
 - **kube-system** The namespace for objects created by the Kubernetes system
 - **kube-public** This namespace is created automatically and is readable by all users (including those not authenticated). This namespace is mostly reserved for cluster usage, in case that some resources should be visible and readable publicly throughout the whole cluster. The public aspect of this namespace is only a convention, not a requirement.
 - **kube-node-lease** This namespace for the lease objects associated with each node which improves the performance of the node heartbeats as the cluster scales.
+
+Los namespaces no proveen aislación de recursos
+Un pod en un namespace A puede comunicarse con otro namespace B
+Un pod en el namespace default puede comunicarse con otro en el kube-system
+Desde cualquier pod en el Cluster podemos comunicarlos a la api de K8S desde este ednpoint https://kubernetes.default.svc.cluster.local/
+
+### **Autenticación y autorización**
+
+**Autenticación** es el método por el cual Kubernetes deja ingresar a un usuario.
+**Autorización** es el mecanismo para que un usuario tenga una serie determinada de permisos para realizar ciertas acciones sobre el cluster.
+
+- Cuando el API server recibe un request intenta autorizarlo con uno o más de uno de los siguientes métodos: Certificados TLS, Bearer Tokens, Basic Auth o Proxy de autenticación.
+- Si cualquier método rechaza la solicitud, se devuelve un 401.
+- Si el request no es aceptado o rechazado, el usuario es anónimo.
+- Por defecto el usuario anónimo no puede hacer ninguna operación en el cluster.
+
