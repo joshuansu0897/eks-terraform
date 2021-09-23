@@ -156,3 +156,70 @@ Desde cualquier pod en el Cluster podemos comunicarlos a la api de K8S desde est
 - Si el request no es aceptado o rechazado, el usuario es anónimo.
 - Por defecto el usuario anónimo no puede hacer ninguna operación en el cluster.
 
+**Service Account Tokens** es un mecanismo de autenticación de kubernetes y vive dentro de la plataforma, nos permite dar permisos a diferentes tipos de usuarios.
+
+- Existen en la API de kubernetes. kubectl get serviceaccount
+- Pueden crearse, eliminarse y actualizarse
+- Un service account está asociado a secretos `kubectl get secrets`
+- Son utilizados para otorgar permisos a aplicaciones y servicios
+
+**Role based access control(RBAC)** es un mecanismo de kubernetes para gestionar roles y la asociación de estos a los usuarios para delimitar las acciones que pueden realizar dentro de la plataforma.
+
+- Un rol es un objeto que contiene una lista de rules
+    - ej: el rol `external-loadbalancer-config` puede:
+        - List, get en recursos endpoints, services y pods
+        - update en recursos services
+- Un rolebiding asocia un rol a un usuario
+- Pueden existir usuarios, roles y rolebidings con el mismo nombre
+- Una buena práctica es tener un 1-1-1 bidings
+- Los Cluster-scope permissions permiten definir permisos a nivel de cluster y no solo namespace
+- Un pod puede estar asociado a un service-account
+    - el token se encuentra en `/var/run/secrets`
+
+### **Recomendaciones**
+
+**Establece una cultura de containers en la organización**
+– Escribir Dockerfiles para una aplicación
+– Escribir compose files para describir servicios
+– Mostrar las ventajas de correr aplicaciones en contenedores
+– Configurar builds automáticos de imágenes
+– Automatizar el CI/CD (staging) pipeline
+
+**Developer Experience:** Si tienes una persona nueva, debe sentirse acompañada en este proceso de por qué usamos kubernetes y quieres mantener la armonía de ese proceso.
+
+**Elección de un cluster de producción:** Hay alternativas como Cloud, Managed o Self-managed, también puedes usar un cluster grande o múltiples pequeños.
+
+**Recordar el uso de namespaces:** Puedes desplegar varias versiones de tu aplicación en diferentes namespaces.
+
+**Servicios con estados (stateful)**
+– Intenta evitarlos al principio
+– Técnicas para exponerlos a los pods (ExternalName, ClusterIP, Ambassador)
+– Storage provider, Persistent volumens, Stateful set
+
+**Gestión del tráfico Http**
+– Ingress controllers (virtual host routing)
+
+**Configuración de la aplicación**
+– Secretos y config maps
+
+**Stacks deployments**
+– GitOps (infraestructure as code)
+– Heml, Spinnaker o Brigade
+
+### **GitOps**
+**GitOps** es una práctica que gestiona toda la configuración de nuestra infraestructura y nuestras aplicaciones en producción a través de Git. **Git** es la fuente de verdad. Esto implica que todo proceso de infraestructura conlleva code reviews, comentarios en los archivos de configuración y enlaces a issues y PR.
+
+- Infraestructura como código
+- Mecanismo de convergencia
+- Uso de CI como fuente de verdad
+- Pull vs Push
+- Developers y operaciones(git)
+- Actualizaciones atómicas
+
+**GitOps** tomo tanta popularidad en la comunidad de DevOps por el impacto que genera.
+
+- Poder desplegar features nuevos rápidos
+- Reducir el tiempo para arreglar bugs
+- Generar el sentimiento de control y empoderamiento. Confidencia y control
+- 20 deploys por día
+- 80% en ahorro del tiempo para arreglar errores en producción
