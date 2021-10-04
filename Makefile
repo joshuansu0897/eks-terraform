@@ -25,7 +25,7 @@ TERRAFORMBASH := docker run -i --rm -t \
 		--entrypoint=/bin/sh \
 		--env AWS_PROFILE="${aws_profile}" \
 		--env AWS_REGION="${aws_region}" \
-		-w /terraform/terraform \
+		-w /terraform \
 		hashicorp/terraform:${tf_versions}
 
 # Format files
